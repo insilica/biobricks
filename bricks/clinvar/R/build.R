@@ -1,4 +1,9 @@
-lapply(c("purrr","fs","arrow","readr","dplyr"),require,character.only=T)
+library(purrr)
+library(fs)
+library(arrow)
+library(readr)
+library(dplyr)
+
 tsub <- \(p,r){partial(gsub,pattern=p,replacement=r,ignore.case=T)}
 
 deps <- dir_ls("download")

@@ -1,5 +1,7 @@
-# DEPENDENCIES ==========================================================
-lapply(c("purrr","rvest","fs"),require,character.only=T)
+library(purrr)
+library(rvest)
+library(fs)
+
 options(timeout=1800) # download timeout
 
 clinvar <- 'https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited'
