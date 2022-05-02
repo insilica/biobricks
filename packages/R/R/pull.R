@@ -29,5 +29,5 @@ bake <- function(brick){
 lzy <- function(files){
   pqt <- files |> purrr::keep(~ fs::path_ext(.) == "parquet")
   nm  <- fs::path_file(pqt) |> fs::path_ext_remove()
-  purrr::map(pqt,arrow::read_parquet) |> purrr::set_names(nm)
+  purrr::map(pqt,~arrow::read_parquet(.,as_data_frame=F)) |> purrr::set_names(nm)
 }
