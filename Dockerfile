@@ -1,20 +1,25 @@
 FROM rocker/r-ver:4.1.2
 
-RUN apt-get update -qq && apt-get -y --no-install-recommends install \
-  git libcurl4-openssl-dev libssl-dev libsodium-dev libgit2-dev \
-  libicu-dev libxml2-dev libpq-dev make zlib1g-dev pandoc
+RUN apt-get update -qq
+RUN apt-get -y --no-install-recommends install \
+  git python3.8 python3-pip libxml2-dev
 
 RUN install2.r --error arrow
 RUN install2.r --error dplyr
 RUN install2.r --error fs
 RUN install2.r --error purrr
+RUN install2.r --error xml2
 RUN install2.r --error readr
 RUN install2.r --error rvest
 
-RUN R -e "install.packages('remotes', repos = c(CRAN = 'https://cloud.r-project.org'))"
+RUN pip install dvc
 
-WORKDIR /app
-ADD ./ ./
-RUN R -e "remotes::install_local('.',dependencies='Imports')"
+# BIOBRICKS ACTIONS
+ADD ./actions /biobricks/actions
+ADD ./bricks /biobricks/bricks
+RUN chmod u+x /biobricks/actions/*
+ENV PATH="/biobricks/actions:${PATH}"
+ENV BRICKDIR="/biobricks/bricks" 
 
-# ENTRYPOINT R --vanilla -s -e 'biobricks::run()'
+WORKDIR /biobricks/bricks
+ENTRYPOINT /biobricks/actions/initialize.sh
