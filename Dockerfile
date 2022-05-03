@@ -14,12 +14,4 @@ RUN install2.r --error rvest
 
 RUN pip install dvc
 
-# BIOBRICKS ACTIONS
-ADD ./actions /biobricks/actions
-ADD ./bricks /biobricks/bricks
-RUN chmod u+x /biobricks/actions/*
-ENV PATH="/biobricks/actions:${PATH}"
-ENV BRICKDIR="/biobricks/bricks" 
-
 WORKDIR /biobricks/bricks
-ENTRYPOINT /biobricks/actions/initialize.sh
