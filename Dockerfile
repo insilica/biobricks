@@ -1,3 +1,4 @@
+# docker build -t insilica/biobricks:1.0 .
 FROM rocker/r-ver:4.2
 
 RUN apt-get update -y
