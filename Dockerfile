@@ -21,3 +21,4 @@ RUN install2.r --error RSQLite
 # Biobricks testing
 RUN install2.r --error remotes
 RUN Rscript -e "remotes::install_github('biobricks-ai/biobricks-r')"
+RUN Rscript -e "remotes::install_github('biobricks-ai/bricktools')"
