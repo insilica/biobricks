@@ -8,6 +8,7 @@ RUN apt-get -y --no-install-recommends install git libxml2-dev
 
 RUN apt-get install -y python3 python3-pip
 RUN pip install dvc
+RUN pip install dvc-s3
 
 # Biobricks dependencies
 RUN install2.r --error arrow
