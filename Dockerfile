@@ -1,6 +1,6 @@
-# docker build -t insilica/biobricks:2.0 .
+# docker build -t insilica/biobricks:3.0 .
+# docker build -t insilica/biobricks:latest .
 # docker login
-# docker push insilica/biobricks:2.0
 FROM rocker/r-ver:4.2
 
 RUN apt-get update -y
@@ -26,3 +26,7 @@ RUN install2.r --error yaml
 RUN install2.r --error remotes
 RUN Rscript -e "remotes::install_github('biobricks-ai/biobricks-r')"
 RUN Rscript -e "remotes::install_github('biobricks-ai/bricktools')"
+
+# Add some scripts
+ADD scripts/ /usr/local/bin/
+RUN chmod +x /usr/local/bin/github-action-bricktools-check.sh
