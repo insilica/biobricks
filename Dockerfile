@@ -20,6 +20,7 @@ RUN install2.r --error readr
 RUN install2.r --error rvest
 RUN install2.r --error DBI
 RUN install2.r --error RSQLite
+RUN install2.r --error yaml
 
 # Biobricks testing
 RUN install2.r --error remotes
