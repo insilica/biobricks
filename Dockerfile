@@ -28,5 +28,4 @@ RUN Rscript -e "remotes::install_github('biobricks-ai/biobricks-r')"
 RUN Rscript -e "remotes::install_github('biobricks-ai/bricktools')"
 
 # Add some scripts
-ADD scripts/ /usr/local/bin/
-RUN chmod +x /usr/local/bin/github-action-bricktools-check.sh
+ADD scripts/github-action-bricktools-check.sh /
